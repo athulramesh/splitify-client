@@ -1,0 +1,8 @@
+.group {
+  height: 100vh;
+  background-color: #dee2e6;
+}
+.searchBar {
+  display: flex;
+  align-items: center;
+}

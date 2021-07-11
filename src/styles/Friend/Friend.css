@@ -1,0 +1,33 @@
+.friend {
+  height: 100vh;
+  background-color: #e5e5e5;
+}
+.header__left {
+  min-width: 70px;
+  width: 50%;
+  background-color: white;
+  color: grey;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+}
+.header__left > form {
+  width: 100%;
+}
+
+.header__left > form > input {
+  border: none;
+  width: 100%;
+  outline: none;
+}
+.userTab {
+  margin-left: 20px;
+  width: 50%;
+  height: 100px;
+}
+.header {
+  padding: 10px;
+}
