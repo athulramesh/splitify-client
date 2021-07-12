@@ -4,6 +4,7 @@ import "../../styles/Home/Dashboard.css";
 
 import { useAuth } from "../../contexts/AuthContext";
 import SideBar from "./SideBar";
+import Notification from "./Notification";
 
 function Dashboad() {
   const { currentUser } = useAuth();
@@ -11,6 +12,7 @@ function Dashboad() {
     <div className="dash">
       <div className="nav">
         <h1 className="logo">Splitify</h1>
+        <Notification />
         <div className="user">
           <Avatar>
             {currentUser?.userDetails?.firstName[0].toUpperCase()}

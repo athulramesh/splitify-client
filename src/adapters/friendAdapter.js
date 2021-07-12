@@ -13,6 +13,30 @@ export default class Friend {
       }
     );
   }
+  acceptRequest;
+
+  static acceptRequest(currentUser, requestBody) {
+    return axios.put(
+      `${this.basePath}connections/${currentUser?.userDetails.id}/approve`,
+      requestBody,
+      {
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
+  static getFriendRequests(currentUser) {
+    return axios.get(
+      `${this.basePath}connections/${currentUser?.userDetails.id}`,
+      {
+        params: { type: "NEW" },
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
   static getUserByUserName(currentUser, userName) {
     return axios.get(`${this.basePath}users`, {
       params: { userName: userName },
