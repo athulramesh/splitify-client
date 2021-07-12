@@ -13,7 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Alert from "@material-ui/lab/Alert";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link as Linker } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 function Copyright() {
@@ -139,9 +139,7 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
+              <Linker to="/sign-up">{"Don't have an account? Sign Up"}</Linker>
             </Grid>
           </Grid>
         </form>
