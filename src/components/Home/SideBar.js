@@ -44,7 +44,7 @@ function SideBar() {
     {
       path: `/group/:${groupId}`,
       sidebar: () => <h2>group/{groupId}</h2>,
-      main: () => <GroupDetails />,
+      main: () => <GroupDetails id={groupId} />,
     },
   ];
   const AuthPage = () => {

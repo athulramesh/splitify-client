@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import GroupAdapter from "../../adapters/groupAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Group/GroupDetails.css";
+import AddPayment from "./AddPayment";
 
-function GroupDetails() {
-  let { id } = useParams();
+function GroupDetails({ id }) {
   const { currentUser } = useAuth();
   const [group, setGroup] = useState();
   function getGroupDetails() {
@@ -21,6 +20,7 @@ function GroupDetails() {
   return (
     <div>
       <h1>GroupDetails</h1>
+      <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
     </div>
   );
 }
