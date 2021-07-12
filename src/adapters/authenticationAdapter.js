@@ -6,4 +6,8 @@ export default class Auth {
     let data = axios.post(`${this.pathVariable}sign-in`, authRequest);
     return data;
   }
+  static signUp(authRequest) {
+    let data = axios.post(`${this.pathVariable}sign-up`, authRequest);
+    return data;
+  }
 }

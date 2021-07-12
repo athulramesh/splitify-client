@@ -18,6 +18,12 @@ export function AuthProvider({ children }) {
     return data;
   }
 
+  async function signUp(authRequest) {
+    let data = await auth.signUp(authRequest).then((data) => {
+      setCurrentUser(data.data);
+    });
+    return data;
+  }
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -25,6 +31,7 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     login,
+    signUp,
   };
   return (
     <AuthContext.Provider value={value}>
