@@ -12,12 +12,14 @@ function Dashboad() {
     <div className="dash">
       <div className="nav">
         <h1 className="logo">Splitify</h1>
-        <Notification />
-        <div className="user">
-          <Avatar>
-            {currentUser?.userDetails?.firstName[0].toUpperCase()}
-          </Avatar>
-          <h2>{currentUser?.userDetails?.firstName}</h2>
+        <div className="nav_right">
+          <Notification />
+          <div className="user">
+            <Avatar>
+              {currentUser?.userDetails?.firstName[0].toUpperCase()}
+            </Avatar>
+            <h2>{currentUser?.userDetails?.firstName}</h2>
+          </div>
         </div>
       </div>
       <SideBar />

@@ -6,9 +6,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core/styles";
-import { List } from "@material-ui/core";
+import { IconButton, List } from "@material-ui/core";
 import GroupMemberList from "./GroupMemberList";
 import { useFriends } from "../../contexts/FriendsContext";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +46,16 @@ export default function AddMember({ groupMemberList, groupId }) {
 
   return (
     <div>
-      <Button onClick={handleClickOpen("paper")}>Add Member</Button>
+      <Button
+        variant="contained"
+        className="add"
+        size="small"
+        style={{ backgroundColor: "#335c67", color: "#FFFFFF" }}
+        startIcon={<PersonAddIcon />}
+        onClick={handleClickOpen("paper")}
+      >
+        Add Member
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}

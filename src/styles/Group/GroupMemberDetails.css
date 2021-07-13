@@ -1,0 +1,17 @@
+.root {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  overflow-y: overlay;
+}
+.content {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+.memberName {
+  padding-left: 10px;
+}

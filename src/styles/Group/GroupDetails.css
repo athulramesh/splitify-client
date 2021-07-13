@@ -1,4 +1,22 @@
-.group {
+.group_details {
   height: 100vh;
   background-color: #dee2e6;
+  display: flex;
+}
+.group_transaction_details {
+  flex: 0.5;
+}
+
+.group_member_details {
+  flex: 0.5;
+  background-color: #ced4da;
+  overflow-y: overlay;
+}
+.group_member_details::-webkit-scrollbar {
+  display: none;
+}
+.groupMemberHeading {
+  margin-top: 10px;
+  padding: 10px;
+  color: #6c757d;
 }
