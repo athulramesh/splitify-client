@@ -6,14 +6,15 @@ import SearchIcon from "@material-ui/icons/Search";
 import FriendList from "./FriendList";
 import Alert from "@material-ui/lab/Alert";
 import UserCard from "./UserCard";
+import { useFriends } from "../../contexts/FriendsContext";
 function Friend() {
-  const [friends, setFriends] = useState();
   const [user, setUser] = useState();
   const { currentUser } = useAuth();
   const userNameRef = useRef();
   const [error, setError] = useState();
+  const { friends, getUserFriends } = useFriends();
   function getFriends() {
-    FriendAdapter.getFriends(currentUser).then((data) => setFriends(data.data));
+    getUserFriends();
   }
   async function handle(e) {
     e.preventDefault();

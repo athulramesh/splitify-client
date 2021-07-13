@@ -66,7 +66,7 @@ export default function Notification() {
         }}
       >
         <Typography className={classes.typography}>
-          The content of the Popover.
+          Your friend requests.
         </Typography>
         <FriendRequets requests={friendRequests} />
       </Popover>

@@ -1,0 +1,12 @@
+.item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.name {
+  display: flex;
+  width: 100%;
+}
+.button-area {
+  margin-left: 30px;
+}

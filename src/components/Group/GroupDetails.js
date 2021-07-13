@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import GroupAdapter from "../../adapters/groupAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Group/GroupDetails.css";
+import AddMember from "./AddMember";
 import AddPayment from "./AddPayment";
 
 function GroupDetails({ id }) {
@@ -21,6 +22,7 @@ function GroupDetails({ id }) {
     <div>
       <h1>GroupDetails</h1>
       <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
+      <AddMember groupMemberList={group?.groupMemberList} groupId={id} />
     </div>
   );
 }

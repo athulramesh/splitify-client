@@ -25,6 +25,18 @@ export default class GroupAdapter {
     );
   }
 
+  static addGroupMember(currentUser, groupId, requestBody) {
+    return axios.post(
+      `${this.basePath}groups/${groupId}/add-member`,
+      requestBody,
+      {
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
+
   static getGroupDetails(currentUser, groupId) {
     return axios.get(`${this.basePath}groups/${groupId}`, {
       headers: {
