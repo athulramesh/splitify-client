@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import GroupAdapter from "../../adapters/groupAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Group/GroupDetails.css";
+import AddExpense from "./AddExpense";
 import AddMember from "./AddMember";
 import AddPayment from "./AddPayment";
 import GroupMemberDetails from "./GroupMemberDetails";
@@ -26,6 +27,7 @@ function GroupDetails({ id }) {
         {group?.groupName}
       </Typography>
       <div className="group_transaction_details">
+        <AddExpense groupId={id} groupMemberList={group?.groupMemberList} />
         <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
         <AddMember groupMemberList={group?.groupMemberList} groupId={id} />
       </div>
