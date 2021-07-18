@@ -4,7 +4,6 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import {
   InputAdornment,
@@ -13,7 +12,6 @@ import {
   ListItem,
   ListItemText,
 } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 
@@ -88,13 +86,10 @@ export default function SplitUnequally({
       >
         <DialogTitle id="form-dialog-title">Split UnEqually</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText>Split</DialogContentText> */}
           <div>
-            <form>
-              <Typography variant="body2" color="textPrimary">
-                {"Expense Amount : " + amount}
-              </Typography>
-            </form>
+            <Typography variant="body2" color="textPrimary">
+              {"Expense Amount : " + amount}
+            </Typography>
             <List dense className={classes.root}>
               {groupMemberList.map((value) => {
                 const labelId = `checkbox-list-secondary-label-${value.id}`;
