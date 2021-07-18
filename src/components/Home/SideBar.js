@@ -22,7 +22,6 @@ function SideBar() {
   const [groupId, setGroupId] = useState("");
   const [friend, setfriend] = useState("");
   let handleCallback = (childData) => {
-    console.log(groupId);
     setfriend("");
     setGroupId("");
     setGroupId(childData);
