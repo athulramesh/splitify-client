@@ -7,7 +7,7 @@ import FriendList from "./FriendList";
 import Alert from "@material-ui/lab/Alert";
 import UserCard from "./UserCard";
 import { useFriends } from "../../contexts/FriendsContext";
-function Friend() {
+function Friend({ parentCallbackFriend }) {
   const [user, setUser] = useState();
   const { currentUser } = useAuth();
   const userNameRef = useRef();
@@ -40,6 +40,9 @@ function Friend() {
     getFriends();
   }, []);
 
+  function handleClickFriend(groupId) {
+    parentCallbackFriend(groupId);
+  }
   return (
     <div className="friend">
       <h1 className="header">Friends</h1>
@@ -66,11 +69,13 @@ function Friend() {
       </div>
       <div className="friendls">
         {friends?.map((f) => (
-          <FriendList
-            key={f.fromId}
-            firstName={f.firstName}
-            lastName={f.lastName}
-          />
+          <div onClick={() => handleClickFriend(f)}>
+            <FriendList
+              key={f.id}
+              firstName={f.firstName}
+              lastName={f.lastName}
+            />
+          </div>
         ))}
       </div>
     </div>

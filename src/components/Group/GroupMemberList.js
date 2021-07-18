@@ -15,20 +15,20 @@ export default function GroupMemberList({ value, groupId }) {
 
   const acceptRequest = () => {
     GroupAdapter.addGroupMember(currentUser, groupId, {
-      userId: value.fromId,
+      userId: value.id,
     });
     setAdded(true);
   };
   return (
     <div>
-      <ListItem key={value.fromId} button>
+      <ListItem key={value.id} button>
         <div className="item">
           <div className="name">
             <ListItemAvatar>
               <Avatar />
             </ListItemAvatar>
             <ListItemText
-              id={value.fromId}
+              id={value.id}
               primary={`${value.firstName} ${value.lastName}`}
             />
             <div className="button-area">

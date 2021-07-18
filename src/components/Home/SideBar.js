@@ -16,12 +16,16 @@ import HomeIcon from "@material-ui/icons/Home";
 import GroupIcon from "@material-ui/icons/Group";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import GroupDetails from "../Group/GroupDetails";
+import FriendGroupDetails from "../Group/FriendGroupDetails";
 
 function SideBar() {
   const [groupId, setGroupId] = useState("");
+  const [friend, setfriend] = useState("");
   let handleCallback = (childData) => {
     setGroupId(childData);
-    console.log(groupId);
+  };
+  let handleFriendCallback = (friend) => {
+    setfriend(friend);
   };
   const routes = [
     {
@@ -38,19 +42,29 @@ function SideBar() {
     },
     {
       path: "/friend",
+      exact: true,
       sidebar: () => <h2>Friends</h2>,
-      main: () => <Friend />,
+      main: () => <Friend parentCallbackFriend={handleFriendCallback} />,
     },
     {
       path: `/group/:${groupId}`,
       sidebar: () => <h2>group/{groupId}</h2>,
       main: () => <GroupDetails id={groupId} />,
     },
+    {
+      path: `/friend/:${friend?.groupId}`,
+      sidebar: () => <h2>friend/{friend?.groupId}</h2>,
+      main: () => <FriendGroupDetails friend={friend} />,
+    },
   ];
   const AuthPage = () => {
     if (groupId !== "") {
       let id = groupId;
       return <Redirect from="/group" to={`/group/${id}`} />;
+    }
+    if (friend?.groupId) {
+      let id = friend?.groupId;
+      return <Redirect from="/friend" to={`/friend/${id}`} />;
     }
   };
   return (
