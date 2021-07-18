@@ -6,7 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core/styles";
-import { IconButton, List } from "@material-ui/core";
+import { List } from "@material-ui/core";
 import GroupMemberList from "./GroupMemberList";
 import { useFriends } from "../../contexts/FriendsContext";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
