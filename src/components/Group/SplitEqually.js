@@ -39,7 +39,7 @@ export default function SplitEqually({
       amountDetails[groupMemberList[i]?.id] = amount / checked;
     }
     setCheckedModify(amountDetails);
-  }, [amount]);
+  }, [amount, open]);
 
   const handleClickOpen = () => {
     setOpen(true);

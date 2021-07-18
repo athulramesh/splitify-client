@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import ExpenseAdapter from "../../adapters/expenseAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Group/GroupDetails.css";
+import "../../styles/Group/AddExpense.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -9,7 +10,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import ReceiptIcon from "@material-ui/icons/Receipt";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -27,6 +27,7 @@ import {
 } from "@material-ui/pickers";
 
 import SplitEqually from "./SplitEqually";
+import SplitUnequally from "./SplitUnequally";
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
@@ -53,7 +54,7 @@ function AddExpense({ groupId, groupMemberList }) {
   let handleCallBack1 = (childData) => {
     let temp = [];
     for (const i in childData) {
-      if (childData[i] !== -1 && Number(i) !== currentUser?.userDetails?.id) {
+      if (childData[i] > 0 && Number(i) !== currentUser?.userDetails?.id) {
         temp.push({ ownerId: i, amount: childData[i] });
       }
     }
@@ -78,7 +79,7 @@ function AddExpense({ groupId, groupMemberList }) {
       paidBy: paidBy,
       createdBy: currentUser.userDetails.id,
       amount: Number(expenseAmountRef.current.value),
-      selectedDate: selectedDate,
+      onDate: selectedDate,
       share: share,
     };
     console.log(req);
@@ -168,11 +169,18 @@ function AddExpense({ groupId, groupMemberList }) {
               />
             </Grid>
           </MuiPickersUtilsProvider>
-          <SplitEqually
-            groupMemberList={groupMemberList}
-            amount={expenseAmountState}
-            parentCallBack={handleCallBack1}
-          />
+          <div className="split_strategy ">
+            <SplitEqually
+              groupMemberList={groupMemberList}
+              amount={expenseAmountState}
+              parentCallBack={handleCallBack1}
+            />
+            <SplitUnequally
+              groupMemberList={groupMemberList}
+              amount={expenseAmountState}
+              parentCallBack={handleCallBack1}
+            />
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
