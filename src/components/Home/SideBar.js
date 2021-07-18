@@ -25,9 +25,7 @@ function SideBar() {
     console.log(groupId);
     setfriend("");
     setGroupId("");
-    let gId = groupId;
-    gId = childData;
-    setGroupId(gId);
+    setGroupId(childData);
   };
   let handleFriendCallback = (friend) => {
     setfriend("");
