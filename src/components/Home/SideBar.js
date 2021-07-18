@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,9 +22,16 @@ function SideBar() {
   const [groupId, setGroupId] = useState("");
   const [friend, setfriend] = useState("");
   let handleCallback = (childData) => {
-    setGroupId(childData);
+    console.log(groupId);
+    setfriend("");
+    setGroupId("");
+    let gId = groupId;
+    gId = childData;
+    setGroupId(gId);
   };
   let handleFriendCallback = (friend) => {
+    setfriend("");
+    setGroupId("");
     setfriend(friend);
   };
   const routes = [
