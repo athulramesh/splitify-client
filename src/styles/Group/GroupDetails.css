@@ -20,3 +20,9 @@
   padding: 10px;
   color: #6c757d;
 }
+.expenseDetails {
+  margin-right: 30%;
+}
+.actions {
+  display: flex;
+}
