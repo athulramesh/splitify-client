@@ -1,0 +1,10 @@
+.listItem {
+  background-color: ivory;
+  display: inline;
+}
+.list_expense_shares {
+  align-items: center;
+  /* margin-left: 20px; */
+  justify-content: space-around;
+  /* margin-bottom: 15px; */
+}

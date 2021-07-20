@@ -9,4 +9,15 @@ export default class ExpenseAdapter {
       },
     });
   }
+
+  static getUserExpenses(currentUser, groupId) {
+    return axios.get(
+      `${this.basePath}expenses/${currentUser?.userDetails.id}/group/${groupId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
 }

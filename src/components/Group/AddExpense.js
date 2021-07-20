@@ -50,15 +50,9 @@ function AddExpense({ groupId, groupMemberList }) {
   const expenseAmountRef = useRef();
   const [expenseAmountState, setExpenseAmountState] = useState(0);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [share, setShare] = useState([]);
+  const [share, setShare] = useState({});
   let handleCallBack1 = (childData) => {
-    let temp = [];
-    for (const i in childData) {
-      if (childData[i] > 0 && Number(i) !== currentUser?.userDetails?.id) {
-        temp.push({ ownerId: i, amount: childData[i] });
-      }
-    }
-    setShare(temp);
+    setShare(childData);
   };
   const handleClickOpen = () => {
     setOpen(true);
@@ -73,6 +67,12 @@ function AddExpense({ groupId, groupMemberList }) {
     setPaidBy(event.target.value);
   };
   const handleExpense = () => {
+    let temp = [];
+    for (const i in share) {
+      if (share[i] > 0 && Number(i) !== paidBy) {
+        temp.push({ ownerId: i, amount: share[i] });
+      }
+    }
     let req = {
       expenseName: expenseNameRef.current.value,
       groupId: groupId,
@@ -80,7 +80,7 @@ function AddExpense({ groupId, groupMemberList }) {
       createdBy: currentUser.userDetails.id,
       amount: Number(expenseAmountRef.current.value),
       onDate: selectedDate,
-      share: share,
+      share: temp,
     };
     console.log(req);
     ExpenseAdapter.recordExpense(currentUser, req);
