@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,12 +31,20 @@ function SideBar() {
     setGroupId("");
     setfriend(friend);
   };
+  let handleCallBackComponent = (childData) => {
+    console.log(childData);
+    if (childData?.component === "group") {
+      handleCallback(childData?.groupId);
+    } else {
+      handleFriendCallback(childData?.friend);
+    }
+  };
   const routes = [
     {
       path: "/",
       exact: true,
       sidebar: () => <h2>Home</h2>,
-      main: () => <Home />,
+      main: () => <Home handleCallBackHome={handleCallBackComponent} />,
     },
     {
       path: "/group",

@@ -1,0 +1,23 @@
+.groupList {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+.groupName {
+  padding-left: 10px;
+}
+.groupLister {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.transactiondetails {
+  color: rgb(17, 184, 17);
+  display: flex;
+}
+.Amount {
+  margin-right: 5px;
+}
