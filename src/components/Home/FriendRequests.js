@@ -9,6 +9,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { Button, Divider } from "@material-ui/core";
 import FriendAdapter from "../../adapters/friendAdapter";
 import { useAuth } from "../../contexts/AuthContext";
+import { useFriends } from "../../contexts/FriendsContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,12 +22,16 @@ const useStyles = makeStyles((theme) => ({
 export default function FriendRequets({ requests }) {
   const classes = useStyles();
   const { currentUser } = useAuth();
+  const { setFriend } = useFriends();
 
-  const acceptRequest = (id) => {
-    console.log(id);
-    FriendAdapter.acceptRequest(currentUser, { connectionId: id }).then(
-      (data) => console.log(data)
-    );
+  const acceptRequest = (value) => {
+    console.log(value.connectionId);
+    FriendAdapter.acceptRequest(currentUser, {
+      connectionId: value.connectionId,
+    }).then((res) => {
+      value.groupId = res.data;
+      setFriend(value);
+    });
   };
   return (
     <List dense className={classes.root}>
@@ -34,7 +39,7 @@ export default function FriendRequets({ requests }) {
         const labelId = `checkbox-list-secondary-label-${value.fromId}`;
         return (
           <div>
-            <ListItem key={value.fromId} button>
+            <ListItem key={value.id} button>
               <ListItemAvatar>
                 <Avatar />
               </ListItemAvatar>
@@ -46,7 +51,7 @@ export default function FriendRequets({ requests }) {
                 <Button
                   size="small"
                   color="primary"
-                  onClick={() => acceptRequest(value.connectionId)}
+                  onClick={() => acceptRequest(value)}
                 >
                   Accept
                 </Button>
