@@ -4,11 +4,11 @@
   display: flex;
 }
 .group_transaction_details {
-  flex: 0.5;
+  flex: 0.6;
 }
 
 .group_member_details {
-  flex: 0.5;
+  flex: 0.4;
   background-color: #ced4da;
   overflow-y: overlay;
 }
@@ -22,9 +22,12 @@
 }
 .expenseDetails {
   margin-right: 30%;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 .actions {
   display: flex;
+  margin-left: 10px;
 }
 .member_header {
   display: flex;

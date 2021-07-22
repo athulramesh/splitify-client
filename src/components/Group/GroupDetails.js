@@ -32,10 +32,10 @@ function GroupDetails({ id }) {
   }, []);
   return (
     <div className="group_details">
-      <Typography variant="h3" component="h2" className="groupMemberHeading">
-        {group?.groupName}
-      </Typography>
       <div className="group_transaction_details">
+        <Typography variant="h3" component="h2" className="groupMemberHeading">
+          {group?.groupName}
+        </Typography>
         <div className="actions">
           <AddExpense groupId={id} groupMemberList={group?.groupMemberList} />
           <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
