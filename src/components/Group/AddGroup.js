@@ -12,7 +12,7 @@ import Switch from "@material-ui/core/Switch";
 import GroupAdapter from "../../adapters/groupAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 
-export default function AddGroup() {
+export default function AddGroup({ addGroupCall }) {
   const [open, setOpen] = React.useState(false);
   const groupNameRef = useRef();
   const [simplify, setSimplify] = useState(true);
@@ -29,9 +29,13 @@ export default function AddGroup() {
     setSimplify((prev) => !prev);
   };
   function addGroup() {
-    GroupAdapter.addGroup(currentUser, {
+    let req = {
       groupName: groupNameRef.current.value,
       simplify: simplify,
+    };
+    GroupAdapter.addGroup(currentUser, req).then((res) => {
+      req = { ...req, groupId: res.data.groupId };
+      addGroupCall(req);
     });
     handleClose();
   }

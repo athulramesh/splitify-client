@@ -8,7 +8,7 @@ import AddGroup from "./AddGroup";
 
 function Group({ parentCallback }) {
   const { currentUser } = useAuth();
-  const [groups, setGroups] = useState();
+  const [groups, setGroups] = useState([]);
   const groupNameRef = useRef();
   function getGroups() {
     GroupAdapter.getAllGroups(currentUser).then((data) =>
@@ -39,7 +39,9 @@ function Group({ parentCallback }) {
   function handleClick(groupId) {
     parentCallback(groupId);
   }
-
+  let addGroup = (childData) => {
+    setGroups([...groups, childData]);
+  };
   return (
     <div className="group">
       <h1 className="header">Groups</h1>
@@ -54,7 +56,7 @@ function Group({ parentCallback }) {
             />
           </form>
         </div>
-        <AddGroup />
+        <AddGroup addGroupCall={addGroup} />
       </div>
       <div className="groupLs">
         {groups?.map((f) => (

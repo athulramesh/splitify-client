@@ -12,7 +12,10 @@ export default function GroupMemberDetails({ value }) {
   return (
     <Card className="root">
       <CardContent className="content">
-        <Avatar className="memberAvatar">
+        <Avatar
+          className="memberAvatar"
+          style={{ height: "30px", width: "30px" }}
+        >
           {value?.firstName[0].toUpperCase()}
         </Avatar>
         <Typography variant="h7" component="h7" className="memberName">
