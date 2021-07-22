@@ -30,6 +30,13 @@ function GroupDetails({ id }) {
     getGroupDetails();
     getAllExpenseDetails();
   }, []);
+
+  let memCall = (childData) => {
+    setGroup({
+      ...group,
+      groupMemberList: [...group.groupMemberList, childData],
+    });
+  };
   return (
     <div className="group_details">
       <div className="group_transaction_details">
@@ -55,7 +62,11 @@ function GroupDetails({ id }) {
           >
             Group members
           </Typography>
-          <AddMember groupMemberList={group?.groupMemberList} groupId={id} />
+          <AddMember
+            groupMemberList={group?.groupMemberList}
+            groupId={id}
+            addMemCallBack={memCall}
+          />
         </div>
         {group?.groupMemberList?.map((g) => (
           <GroupMemberDetails value={g} />

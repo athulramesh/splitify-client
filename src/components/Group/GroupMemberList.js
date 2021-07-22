@@ -9,14 +9,14 @@ import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Group/GroupMemberList.css";
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 
-export default function GroupMemberList({ value, groupId }) {
+export default function GroupMemberList({ value, groupId, addMemCallBack2 }) {
   const { currentUser } = useAuth();
   const [added, setAdded] = useState(false);
 
   const acceptRequest = () => {
     GroupAdapter.addGroupMember(currentUser, groupId, {
       userId: value.id,
-    });
+    }).then(addMemCallBack2(value));
     setAdded(true);
   };
   return (

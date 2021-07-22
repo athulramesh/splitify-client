@@ -19,7 +19,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
 }));
-export default function AddMember({ groupMemberList, groupId }) {
+export default function AddMember({
+  groupMemberList,
+  groupId,
+  addMemCallBack,
+}) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
   const { friends, getUserFriends } = useFriends();
@@ -74,7 +78,11 @@ export default function AddMember({ groupMemberList, groupId }) {
             {
               <List dense className={classes.root}>
                 {friends?.map((g) => (
-                  <GroupMemberList value={g} groupId={groupId} />
+                  <GroupMemberList
+                    value={g}
+                    groupId={groupId}
+                    addMemCallBack2={addMemCallBack}
+                  />
                 ))}
               </List>
             }
