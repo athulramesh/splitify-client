@@ -15,6 +15,7 @@ import "../../styles/Group/ExpenseDetailsAccordion.css";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    marginTop: "5px",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

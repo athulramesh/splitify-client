@@ -85,13 +85,6 @@ function GroupDetails({ id }) {
           <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
         </div>
         <div>
-          <Typography
-            variant="h5"
-            component="h2"
-            className="groupMemberHeading"
-          >
-            Individual Transactions
-          </Typography>
           {transactions?.map((t) => (
             <IndividualTransactionCard key={id} individualTransaction={t} />
           ))}

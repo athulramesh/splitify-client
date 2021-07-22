@@ -2,9 +2,17 @@
   height: 100vh;
   background-color: #dee2e6;
   display: flex;
+  overflow-y: overlay;
+}
+.group_details::-webkit-scrollbar {
+  display: none;
 }
 .group_transaction_details {
   flex: 0.6;
+  overflow-y: overlay;
+}
+.group_transaction_details::-webkit-scrollbar {
+  display: none;
 }
 
 .group_member_details {

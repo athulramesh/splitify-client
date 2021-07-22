@@ -13,7 +13,7 @@ function Summary({ from, to }) {
           <div className="transactions">
             <div className="owe">
               <Typography variant="h6" component="h6">
-                {`You are owed.`}
+                {`You are owed`}
               </Typography>
               <Typography
                 variant="h4"
@@ -25,7 +25,7 @@ function Summary({ from, to }) {
             </div>
             <div className="owe">
               <Typography variant="h6" component="h6">
-                {`You owe.`}
+                {`You owe`}
               </Typography>
               <Typography
                 variant="h4"
