@@ -12,13 +12,15 @@ import GroupMemberDetails from "./GroupMemberDetails";
 import ExpenseDetailsAccordion from "./ExpenseDetailsAccordion";
 import TransactionAdapter from "../../adapters/transactionAdapter";
 import IndividualTransactionCard from "./IndividualTransactionCard";
+import mergerSort from "./mergesort";
 
 function GroupDetails({ id }) {
   const { currentUser } = useAuth();
   const [group, setGroup] = useState();
-  const [expenses, setExpenses] = useState();
-  const [payments, setpayments] = useState();
+  const [expenses, setExpenses] = useState([]);
+  const [payments, setpayments] = useState([]);
   const [transactions, setTransactions] = useState();
+  const [sortedList, setSortedList] = useState();
   function getGroupDetails() {
     GroupAdapter.getGroupDetails(currentUser, id).then((data) => {
       setGroup(data.data);
@@ -38,14 +40,12 @@ function GroupDetails({ id }) {
   }
   function getAllExpenseDetails() {
     ExpenseAdapter.getUserExpenses(currentUser, id).then((data) => {
-      console.log("expense ");
-      console.log(data.data.expenses);
       if (data.data.expenses.length > 0) {
         let onDate = formatDate(data.data.expenses[0].onDate);
-        console.log(onDate);
         PaymentAdapter.getPaymentsDetails(currentUser, id, onDate).then(
           (res) => {
             setpayments(res.data.payments);
+            setSortedList(mergerSort(expenses, payments));
           }
         );
       }
@@ -68,6 +68,10 @@ function GroupDetails({ id }) {
     getIndividualTransaction();
   }, []);
 
+  useEffect(() => {
+    setSortedList(mergerSort(expenses, payments));
+  }, [payments]);
+
   let memCall = (childData) => {
     setGroup({
       ...group,
@@ -89,11 +93,7 @@ function GroupDetails({ id }) {
             <IndividualTransactionCard key={id} individualTransaction={t} />
           ))}
         </div>
-        <div className="expenseDetails">
-          {expenses?.map((f) => (
-            <ExpenseDetailsAccordion key={f.groupId} expense={f} />
-          ))}
-        </div>
+        <div className="expenseDetails">{sortedList?.map((t) => t)}</div>
       </div>
       <div className="group_member_details">
         <div className="member_header">
