@@ -4,6 +4,7 @@ import TransactionAdapter from "../../adapters/transactionAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import GroupTransactionCard from "../Group/GroupTransactionCard";
 import { Typography } from "@material-ui/core";
+import Summary from "./Summary";
 function Home({ handleCallBackHome }) {
   const { currentUser } = useAuth();
   const [transaction, setTransaction] = useState();
@@ -21,7 +22,12 @@ function Home({ handleCallBackHome }) {
 
   return (
     <div className="home">
-      <h1>Home</h1>
+      <div className="placeholder"></div>
+      <Summary
+        from={transaction?.fromAmount}
+        to={transaction?.toAmount}
+        className="summary"
+      />
       <div className="groupLs">
         <Typography variant="body2">{"Group Transactions"}</Typography>
         {transaction?.groupTransaction?.map((f) => (
