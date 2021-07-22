@@ -10,6 +10,7 @@ import { List } from "@material-ui/core";
 import GroupMemberList from "./GroupMemberList";
 import { useFriends } from "../../contexts/FriendsContext";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import "../../styles/Group/AddMember.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -39,7 +39,6 @@ function GroupDetails({ id }) {
         <div className="actions">
           <AddExpense groupId={id} groupMemberList={group?.groupMemberList} />
           <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
-          <AddMember groupMemberList={group?.groupMemberList} groupId={id} />
         </div>
         <div className="expenseDetails">
           {expenses?.map((f) => (
@@ -48,9 +47,16 @@ function GroupDetails({ id }) {
         </div>
       </div>
       <div className="group_member_details">
-        <Typography variant="h5" component="h2" className="groupMemberHeading">
-          Group members
-        </Typography>
+        <div className="member_header">
+          <Typography
+            variant="h5"
+            component="h2"
+            className="groupMemberHeading"
+          >
+            Group members
+          </Typography>
+          <AddMember groupMemberList={group?.groupMemberList} groupId={id} />
+        </div>
         {group?.groupMemberList?.map((g) => (
           <GroupMemberDetails value={g} />
         ))}
