@@ -9,11 +9,14 @@ import AddMember from "./AddMember";
 import AddPayment from "./AddPayment";
 import GroupMemberDetails from "./GroupMemberDetails";
 import ExpenseDetailsAccordion from "./ExpenseDetailsAccordion";
+import TransactionAdapter from "../../adapters/transactionAdapter";
+import IndividualTransactionCard from "./IndividualTransactionCard";
 
 function GroupDetails({ id }) {
   const { currentUser } = useAuth();
   const [group, setGroup] = useState();
   const [expenses, setExpenses] = useState();
+  const [transactions, setTransactions] = useState();
   function getGroupDetails() {
     GroupAdapter.getGroupDetails(currentUser, id).then((data) => {
       setGroup(data.data);
@@ -26,9 +29,19 @@ function GroupDetails({ id }) {
       console.log(data.data.expenses);
     });
   }
+  function getIndividualTransaction() {
+    TransactionAdapter.getIndividualTransaction(currentUser, id).then(
+      (data) => {
+        setTransactions(data.data.individualTransaction);
+        console.log(data.data.individualTransaction);
+      }
+    );
+  }
+
   useEffect(() => {
     getGroupDetails();
     getAllExpenseDetails();
+    getIndividualTransaction();
   }, []);
 
   let memCall = (childData) => {
@@ -46,6 +59,18 @@ function GroupDetails({ id }) {
         <div className="actions">
           <AddExpense groupId={id} groupMemberList={group?.groupMemberList} />
           <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
+        </div>
+        <div>
+          <Typography
+            variant="h5"
+            component="h2"
+            className="groupMemberHeading"
+          >
+            Individual Transactions
+          </Typography>
+          {transactions?.map((t) => (
+            <IndividualTransactionCard key={id} individualTransaction={t} />
+          ))}
         </div>
         <div className="expenseDetails">
           {expenses?.map((f) => (

@@ -12,4 +12,15 @@ export default class TransactionAdapter {
       }
     );
   }
+
+  static getIndividualTransaction(currentUser, groupId) {
+    return axios.get(
+      `${this.basePath}transactions/${currentUser?.userDetails.id}/group/${groupId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
 }
