@@ -1,6 +1,10 @@
 .friend {
   height: 100vh;
   background-color: #e5e5e5;
+  overflow-y: overlay;
+}
+.friend::-webkit-scrollbar {
+  display: none;
 }
 .header__left {
   min-width: 70px;
