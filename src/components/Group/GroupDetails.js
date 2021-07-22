@@ -2,6 +2,7 @@ import { Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import GroupAdapter from "../../adapters/groupAdapter";
 import ExpenseAdapter from "../../adapters/expenseAdapter";
+import PaymentAdapter from "../../adapters/paymentAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Group/GroupDetails.css";
 import AddExpense from "./AddExpense";
@@ -14,14 +15,37 @@ function GroupDetails({ id }) {
   const { currentUser } = useAuth();
   const [group, setGroup] = useState();
   const [expenses, setExpenses] = useState();
+  const [payments, setpayments] = useState();
   function getGroupDetails() {
     GroupAdapter.getGroupDetails(currentUser, id).then((data) => {
       setGroup(data.data);
       console.log(data.data);
     });
   }
+  function formatDate(date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  }
   function getAllExpenseDetails() {
     ExpenseAdapter.getUserExpenses(currentUser, id).then((data) => {
+      console.log("expense ");
+      console.log(data.data.expenses);
+      if (data.data.expenses.length > 0) {
+        let onDate = formatDate(data.data.expenses[0].onDate);
+        console.log(onDate);
+        PaymentAdapter.getPaymentsDetails(currentUser, id, onDate).then(
+          (res) => {
+            setpayments(res.data.payments);
+          }
+        );
+      }
       setExpenses(data.data.expenses);
       console.log(data.data.expenses);
     });

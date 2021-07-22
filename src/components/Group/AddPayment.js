@@ -40,9 +40,7 @@ export default function AddPayment({ groupId, groupMemberList }) {
   const { currentUser } = useAuth();
   const [paidBy, setPaidBy] = useState("");
   const [receivedBy, setReceivedBy] = useState("");
-  const [selectedDate, setSelectedDate] = useState(
-    new Date("2021-06-18T21:11:54")
-  );
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handlePayment = () => {
     PaymentAdapter.recordPayment(currentUser, {
@@ -53,6 +51,7 @@ export default function AddPayment({ groupId, groupMemberList }) {
       amount: Number(amountRef.current.value),
       onDate: selectedDate,
     }).then((data) => console.log(data));
+    handleClose();
   };
   const handleDateChange = (date) => {
     setSelectedDate(date);

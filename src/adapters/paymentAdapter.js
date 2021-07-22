@@ -10,6 +10,18 @@ export default class PaymentAdapter {
     });
   }
 
+  static getPaymentsDetails(currentUser, groupId, date) {
+    return axios.get(
+      `${this.basePath}payments/${groupId}/group/${currentUser?.userDetails.id}`,
+      {
+        params: { date: date },
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
+
   static addGroup(currentUser, requestBody) {
     return axios.post(
       `${this.basePath}groups/${currentUser?.userDetails.id}`,
