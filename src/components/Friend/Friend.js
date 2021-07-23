@@ -25,11 +25,9 @@ function Friend({ parentCallbackFriend }) {
         userNameRef.current.value
       ).then((data) => {
         setUser(data.data);
-        console.log(data.data);
       });
     } catch (err) {
       setError("Oops!! The requested user not found");
-      console.log(error);
     }
   }
   function init() {

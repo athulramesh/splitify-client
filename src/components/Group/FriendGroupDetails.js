@@ -12,7 +12,6 @@ function FriendGroupDetails({ friend }) {
   function getGroupDetails() {
     GroupAdapter.getGroupDetails(currentUser, friend?.groupId).then((data) => {
       setGroup(data.data);
-      console.log(data.data);
     });
   }
 

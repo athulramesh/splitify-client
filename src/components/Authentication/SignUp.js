@@ -59,7 +59,6 @@ export default function SignUp() {
   const { signUp } = useAuth();
   const history = useHistory();
   async function handle(e) {
-    console.log("handle");
     e.preventDefault();
     try {
       setError("");
@@ -71,7 +70,6 @@ export default function SignUp() {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       });
-      console.log(data);
       history.push("/");
     } catch (err) {
       setError("Failed to login");

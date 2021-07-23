@@ -10,10 +10,8 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
   async function login(authRequest) {
-    console.log(authRequest.userName, authRequest.password);
     let data = await auth.signIn(authRequest).then((data) => {
       setCurrentUser(data.data);
-      console.log(`The data is ${data.data}`);
     });
     return data;
   }

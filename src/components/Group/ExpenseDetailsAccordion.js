@@ -32,7 +32,6 @@ export default function ExpenseDetailsAccordion({ expense }) {
   const { currentUser } = useAuth();
   const [expenseState, setExpanseState] = useState(expense);
 
-  console.log(expense);
   return (
     <div className={classes.root}>
       <Accordion>
@@ -48,7 +47,6 @@ export default function ExpenseDetailsAccordion({ expense }) {
         </AccordionSummary>
         <AccordionDetails>
           <List dense className={classes.root}>
-            {console.log(expenseState?.amount)}
             <Typography>{`Total Expense Amount ${expenseState?.amount}`}</Typography>
 
             {expenseState?.share?.map((e) => {

@@ -11,10 +11,8 @@ function Home({ handleCallBackHome }) {
 
   function getAllTransactions() {
     TransactionAdapter.getGroupWiseTransactions(currentUser).then((data) => {
-      console.log(data.data);
       setTransaction(data.data);
     });
-    console.log("here");
   }
   useEffect(() => {
     getAllTransactions();

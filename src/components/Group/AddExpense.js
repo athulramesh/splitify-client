@@ -82,7 +82,6 @@ function AddExpense({ groupId, groupMemberList }) {
       onDate: selectedDate,
       share: temp,
     };
-    console.log(req);
     ExpenseAdapter.recordExpense(currentUser, req);
     handleClose();
   };

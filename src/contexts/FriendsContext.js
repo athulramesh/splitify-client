@@ -28,7 +28,6 @@ export function FriendsProvider({ children }) {
       getFriends(currentUser);
     }
     setFriends([...friends, friend]);
-    console.log(friend);
   }
   const value = {
     friends,

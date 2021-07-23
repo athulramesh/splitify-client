@@ -32,7 +32,6 @@ function SideBar() {
     setfriend(friend);
   };
   let handleCallBackComponent = (childData) => {
-    console.log(childData);
     if (childData?.component === "group") {
       handleCallback(childData?.groupId);
     } else {

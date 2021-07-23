@@ -13,6 +13,7 @@ import {
   ListItemText,
   makeStyles,
 } from "@material-ui/core";
+import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,7 +105,16 @@ export default function SplitEqually({
                     primary={`${value.firstName} ${value.lastName} `}
                   />
                   <ListItemSecondaryAction>
-                    {checkedModify[value.id] >= 0 ? checkedModify[value.id] : 0}
+                    {checkedModify[value.id] >= 0 ? (
+                      <NumberFormat
+                        value={checkedModify[value.id]}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
+                    ) : (
+                      0
+                    )}
                   </ListItemSecondaryAction>
                 </ListItem>
               );

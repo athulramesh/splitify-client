@@ -38,9 +38,7 @@ export default function UserCard({ firstName, lastName, userName, id }) {
       await FriendAdapter.sendFriendRequest(currentUser, {
         targetUserId: id,
       }).then(setSendStatus(true));
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }
   return (
     <Grow in={true}>

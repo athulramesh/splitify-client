@@ -68,7 +68,6 @@ export default function Login() {
       });
       history.push("/");
     } catch (err) {
-      console.log(err);
       setError("Failed to login");
     }
 

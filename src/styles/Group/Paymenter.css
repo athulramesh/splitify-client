@@ -1,0 +1,17 @@
+.payment_root {
+  display: flex;
+  align-items: center;
+  /* margin-left: 10px;
+  margin-right: 10px; */
+  justify-content: space-between;
+  margin-top: 5px;
+  overflow-y: overlay;
+}
+.payment_content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+/* .payment_memberName {
+  padding-left: 10px;
+} */

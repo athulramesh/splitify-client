@@ -1,4 +1,4 @@
-import { Typography } from "@material-ui/core";
+import { colors, Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import GroupAdapter from "../../adapters/groupAdapter";
 import ExpenseAdapter from "../../adapters/expenseAdapter";
@@ -12,6 +12,7 @@ import GroupMemberDetails from "./GroupMemberDetails";
 import ExpenseDetailsAccordion from "./ExpenseDetailsAccordion";
 import TransactionAdapter from "../../adapters/transactionAdapter";
 import IndividualTransactionCard from "./IndividualTransactionCard";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import mergerSort from "./mergesort";
 
 function GroupDetails({ id }) {
@@ -24,7 +25,6 @@ function GroupDetails({ id }) {
   function getGroupDetails() {
     GroupAdapter.getGroupDetails(currentUser, id).then((data) => {
       setGroup(data.data);
-      console.log(data.data);
     });
   }
   function formatDate(date) {
@@ -50,14 +50,12 @@ function GroupDetails({ id }) {
         );
       }
       setExpenses(data.data.expenses);
-      console.log(data.data.expenses);
     });
   }
   function getIndividualTransaction() {
     TransactionAdapter.getIndividualTransaction(currentUser, id).then(
       (data) => {
         setTransactions(data.data.individualTransaction);
-        console.log(data.data.individualTransaction);
       }
     );
   }
@@ -87,6 +85,26 @@ function GroupDetails({ id }) {
         <div className="actions">
           <AddExpense groupId={id} groupMemberList={group?.groupMemberList} />
           <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
+        </div>
+        <div>
+          {sortedList?.length === 0 ? (
+            <div className="settled">
+              <div className="message">
+                <div className="settled-text">
+                  <Typography
+                    variant="h6"
+                    component="h6"
+                    style={{ color: "#218380" }}
+                  >
+                    {`You are all settled!!`}
+                  </Typography>
+                </div>
+                <CheckCircleIcon
+                  style={{ height: "250px", width: "250px", color: "#64b6ac" }}
+                />
+              </div>
+            </div>
+          ) : null}
         </div>
         <div>
           {transactions?.map((t) => (

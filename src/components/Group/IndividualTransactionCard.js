@@ -8,8 +8,6 @@ import { Avatar, Fade } from "@material-ui/core";
 import "../../styles/Group/IndividualCard.css";
 
 export default function IndividualTransactionCard({ individualTransaction }) {
-  console.log(individualTransaction);
-
   const name = `${individualTransaction?.person?.firstName}  ${individualTransaction?.person?.lastName}`;
   const color = individualTransaction.isToPay ? "#ff686b" : "#06d6a0";
   const style = { color: color };

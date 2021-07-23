@@ -25,7 +25,6 @@ export default function FriendRequets({ requests }) {
   const { setFriend } = useFriends();
 
   const acceptRequest = (value) => {
-    console.log(value.connectionId);
     FriendAdapter.acceptRequest(currentUser, {
       connectionId: value.connectionId,
     }).then((res) => {

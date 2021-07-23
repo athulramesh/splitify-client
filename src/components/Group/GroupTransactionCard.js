@@ -8,7 +8,6 @@ import { Avatar, Fade } from "@material-ui/core";
 import "../../styles/Group/GroupTransactionCard.css";
 
 export default function GroupTransactionCard({ groupTransactions }) {
-  console.log(groupTransactions);
   const name = groupTransactions?.groupName
     ? groupTransactions?.groupName
     : `${groupTransactions?.user?.firstName}  ${groupTransactions?.user?.lastName}`;

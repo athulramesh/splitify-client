@@ -50,7 +50,7 @@ export default function AddPayment({ groupId, groupMemberList }) {
       createdBy: currentUser.userDetails.id,
       amount: Number(amountRef.current.value),
       onDate: selectedDate,
-    }).then((data) => console.log(data));
+    });
     handleClose();
   };
   const handleDateChange = (date) => {
