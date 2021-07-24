@@ -9,7 +9,6 @@ import AddExpense from "./AddExpense";
 import AddMember from "./AddMember";
 import AddPayment from "./AddPayment";
 import GroupMemberDetails from "./GroupMemberDetails";
-import ExpenseDetailsAccordion from "./ExpenseDetailsAccordion";
 import TransactionAdapter from "../../adapters/transactionAdapter";
 import IndividualTransactionCard from "./IndividualTransactionCard";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
@@ -38,8 +37,16 @@ function GroupDetails({ id }) {
 
     return [year, month, day].join("-");
   }
+
+  let expenseCall = () => {
+    getAllExpenseDetails();
+    getIndividualTransaction();
+  };
   function getAllExpenseDetails() {
     ExpenseAdapter.getUserExpenses(currentUser, id).then((data) => {
+      if (data.data.expenses.length === 0) {
+        setSortedList([]);
+      }
       if (data.data.expenses.length > 0) {
         let onDate = formatDate(data.data.expenses[0].onDate);
         PaymentAdapter.getPaymentsDetails(currentUser, id, onDate).then(
@@ -83,8 +90,16 @@ function GroupDetails({ id }) {
           {group?.groupName}
         </Typography>
         <div className="actions">
-          <AddExpense groupId={id} groupMemberList={group?.groupMemberList} />
-          <AddPayment groupId={id} groupMemberList={group?.groupMemberList} />
+          <AddExpense
+            groupId={id}
+            groupMemberList={group?.groupMemberList}
+            expenseCallback={expenseCall}
+          />
+          <AddPayment
+            groupId={id}
+            groupMemberList={group?.groupMemberList}
+            expenseCallback={expenseCall}
+          />
         </div>
         <div>
           {sortedList?.length === 0 ? (

@@ -33,7 +33,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-export default function AddPayment({ groupId, groupMemberList }) {
+export default function AddPayment({
+  groupId,
+  groupMemberList,
+  expenseCallback,
+}) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const amountRef = useRef();
@@ -50,7 +54,7 @@ export default function AddPayment({ groupId, groupMemberList }) {
       createdBy: currentUser.userDetails.id,
       amount: Number(amountRef.current.value),
       onDate: selectedDate,
-    });
+    }).then(() => expenseCallback());
     handleClose();
   };
   const handleDateChange = (date) => {
@@ -77,7 +81,11 @@ export default function AddPayment({ groupId, groupMemberList }) {
         variant="contained"
         className="add"
         size="small"
-        style={{ backgroundColor: "#0db39e", color: "#FFFFFF" }}
+        style={{
+          backgroundColor: "#0db39e",
+          color: "#FFFFFF",
+          marginLeft: "10px",
+        }}
         startIcon={<AttachMoneyIcon />}
         onClick={handleClickOpen}
       >

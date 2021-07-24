@@ -17,7 +17,7 @@ import NumberFormat from "react-number-format";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
+    width: "250px",
     maxWidth: 500,
     backgroundColor: theme.palette.background.paper,
   },
@@ -83,10 +83,10 @@ export default function SplitEqually({
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+        className={classes.rooter}
       >
         <DialogTitle id="form-dialog-title">Split Equally</DialogTitle>
         <DialogContent>
-          <DialogContentText>Split</DialogContentText>
           <List dense className={classes.root}>
             {groupMemberList?.map((value) => {
               const labelId = `checkbox-list-secondary-label-${value.id}`;
@@ -110,7 +110,9 @@ export default function SplitEqually({
                         value={checkedModify[value.id]}
                         displayType={"text"}
                         thousandSeparator={true}
-                        prefix={"$"}
+                        prefix={"₹"}
+                        decimalScale={2}
+                        fixedDecimalScale={true}
                       />
                     ) : (
                       0

@@ -10,11 +10,13 @@ import { Button, Divider } from "@material-ui/core";
 import FriendAdapter from "../../adapters/friendAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import { useFriends } from "../../contexts/FriendsContext";
+import "../../styles/Home/FriendRequest.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    maxWidth: 360,
+    maxWidth: 500,
+    minWidth: 300,
     backgroundColor: theme.palette.background.paper,
   },
 }));

@@ -27,7 +27,11 @@ function Home({ handleCallBackHome }) {
         className="summary"
       />
       <div className="groupLs">
-        <Typography variant="body2">{"Group Transactions"}</Typography>
+        {transaction?.groupTransaction?.length > 0 && (
+          <Typography variant="h6" style={{ marginLeft: "20px" }}>
+            {"Groups"}
+          </Typography>
+        )}
         {transaction?.groupTransaction?.map((f) => (
           <div
             onClick={() =>
@@ -37,7 +41,11 @@ function Home({ handleCallBackHome }) {
             <GroupTransactionCard groupTransactions={f} />
           </div>
         ))}
-        <Typography variant="body2">{"Non Group Transactions"}</Typography>
+        {transaction?.nonGroupTransaction?.length > 0 && (
+          <Typography variant="h6" style={{ marginLeft: "20px" }}>
+            {"Friends"}
+          </Typography>
+        )}
         {transaction?.nonGroupTransaction?.map((g) => (
           <div
             onClick={() =>

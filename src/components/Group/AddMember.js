@@ -55,7 +55,11 @@ export default function AddMember({
         variant="contained"
         className="add"
         size="small"
-        style={{ backgroundColor: "#335c67", color: "#FFFFFF" }}
+        style={{
+          backgroundColor: "#335c67",
+          color: "#FFFFFF",
+          marginRight: "20px",
+        }}
         startIcon={<PersonAddIcon />}
         onClick={handleClickOpen("paper")}
       >

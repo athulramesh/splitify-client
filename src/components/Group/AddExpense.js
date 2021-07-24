@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AddExpense({ groupId, groupMemberList }) {
+function AddExpense({ groupId, groupMemberList, expenseCallback }) {
   const classes = useStyles();
   const { currentUser } = useAuth();
   const [paidBy, setPaidBy] = useState();
@@ -70,7 +70,7 @@ function AddExpense({ groupId, groupMemberList }) {
     let temp = [];
     for (const i in share) {
       if (share[i] > 0 && Number(i) !== paidBy) {
-        temp.push({ ownerId: i, amount: share[i] });
+        temp.push({ ownerId: i, amount: parseFloat(share[i]).toFixed(2) });
       }
     }
     let req = {
@@ -82,7 +82,9 @@ function AddExpense({ groupId, groupMemberList }) {
       onDate: selectedDate,
       share: temp,
     };
-    ExpenseAdapter.recordExpense(currentUser, req);
+    ExpenseAdapter.recordExpense(currentUser, req).then(() =>
+      expenseCallback()
+    );
     handleClose();
   };
 

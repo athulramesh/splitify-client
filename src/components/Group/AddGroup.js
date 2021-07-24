@@ -46,7 +46,11 @@ export default function AddGroup({ addGroupCall }) {
         variant="contained"
         className="add"
         size="small"
-        style={{ backgroundColor: "#6c757d", color: "#FFFFFF" }}
+        style={{
+          backgroundColor: "#6c757d",
+          color: "#FFFFFF",
+          marginLeft: "10px",
+        }}
         startIcon={<GroupAddIcon />}
         onClick={handleClickOpen}
       >

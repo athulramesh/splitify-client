@@ -95,7 +95,7 @@ export default function SplitUnequally({
                 const labelId = `checkbox-list-secondary-label-${value.id}`;
                 return (
                   <form>
-                    <ListItem key={value.id} button>
+                    <ListItem key={value.id}>
                       <ListItemText
                         id={labelId}
                         primary={`${value.firstName} ${value.lastName} `}
