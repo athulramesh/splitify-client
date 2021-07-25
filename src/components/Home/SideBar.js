@@ -68,7 +68,7 @@ function SideBar() {
     {
       path: `/friend/:id`,
       sidebar: () => <h2>friend/{friend?.groupId}</h2>,
-      main: (props) => <FriendGroupDetails {...props} />,
+      main: (props) => <FriendGroupDetails />,
     },
   ];
   const AuthPage = () => {
