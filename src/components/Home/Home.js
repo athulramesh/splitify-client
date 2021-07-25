@@ -5,6 +5,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import GroupTransactionCard from "../Group/GroupTransactionCard";
 import { Typography } from "@material-ui/core";
 import Summary from "./Summary";
+import { Link } from "react-router-dom";
 function Home({ handleCallBackHome }) {
   const { currentUser } = useAuth();
   const [transaction, setTransaction] = useState();
@@ -33,13 +34,9 @@ function Home({ handleCallBackHome }) {
           </Typography>
         )}
         {transaction?.groupTransaction?.map((f) => (
-          <div
-            onClick={() =>
-              handleCallBackHome({ component: "group", groupId: f?.groupId })
-            }
-          >
+          <Link to={`/group/${f.groupId}`} style={{ textDecoration: "none" }}>
             <GroupTransactionCard groupTransactions={f} />
-          </div>
+          </Link>
         ))}
         {transaction?.nonGroupTransaction?.length > 0 && (
           <Typography variant="h6" style={{ marginLeft: "20px" }}>
@@ -47,20 +44,21 @@ function Home({ handleCallBackHome }) {
           </Typography>
         )}
         {transaction?.nonGroupTransaction?.map((g) => (
-          <div
-            onClick={() =>
-              handleCallBackHome({
-                component: "friends",
+          <Link
+            to={{
+              pathname: `friend/${g.groupId}`,
+              state: {
                 friend: {
                   groupId: g?.groupId,
                   firstName: g?.user?.firstName,
                   lastName: g?.user?.lastName,
                 },
-              })
-            }
+              },
+            }}
+            style={{ textDecoration: "none" }}
           >
             <GroupTransactionCard groupTransactions={g} />
-          </div>
+          </Link>
         ))}
       </div>
     </div>
