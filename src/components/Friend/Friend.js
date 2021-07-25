@@ -40,9 +40,6 @@ function Friend({ parentCallbackFriend }) {
     getFriends();
   }, []);
 
-  function handleClickFriend(groupId) {
-    parentCallbackFriend(groupId);
-  }
   return (
     <div className="friend">
       <h1 className="header">Friends</h1>

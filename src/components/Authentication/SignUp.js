@@ -10,9 +10,9 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import axios from "axios";
 import { useAuth } from "../../contexts/AuthContext";
 import { useHistory, Link as Linker } from "react-router-dom";
+import Alert from "@material-ui/lab/Alert";
 
 function Copyright() {
   return (
@@ -63,7 +63,7 @@ export default function SignUp() {
     try {
       setError("");
       setLoading(true);
-      const data = await signUp({
+      await signUp({
         userName: userNameRef.current.value,
         firstName: firstNameRef.current.value,
         lastName: lastNameRef.current.value,
@@ -86,6 +86,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
+        {error && <Alert severity="error">{error}</Alert>}
         <form className={classes.form} onSubmit={handle}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -158,6 +159,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={loading}
           >
             Sign Up
           </Button>

@@ -1,4 +1,4 @@
-import { colors, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import GroupAdapter from "../../adapters/groupAdapter";
 import ExpenseAdapter from "../../adapters/expenseAdapter";

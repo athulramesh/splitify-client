@@ -2,7 +2,6 @@ import { Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ExpenseAdapter from "../../adapters/expenseAdapter";
-import GroupAdapter from "../../adapters/groupAdapter";
 import PaymentAdapter from "../../adapters/paymentAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Group/GroupDetails.css";

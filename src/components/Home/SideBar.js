@@ -46,19 +46,19 @@ function SideBar() {
       path: "/",
       exact: true,
       sidebar: () => <h2>Home</h2>,
-      main: () => <Home handleCallBackHome={handleCallBackComponent} />,
+      main: () => <Home />,
     },
     {
       path: "/group",
       exact: true,
       sidebar: () => <h2>Groups</h2>,
-      main: () => <Group parentCallback={handleCallback} />,
+      main: () => <Group />,
     },
     {
       path: "/friend",
       exact: true,
       sidebar: () => <h2>Friends</h2>,
-      main: () => <Friend parentCallbackFriend={handleFriendCallback} />,
+      main: () => <Friend />,
     },
     {
       path: `/group/:id`,

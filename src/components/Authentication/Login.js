@@ -127,6 +127,7 @@ export default function Login() {
             fullWidth
             variant="contained"
             color="primary"
+            disabled={loading}
             className={classes.submit}
           >
             Sign In

@@ -5,8 +5,7 @@ import GroupAdapter from "../../adapters/groupAdapter";
 import SearchIcon from "@material-ui/icons/Search";
 import GroupCard from "./GroupCard";
 import AddGroup from "./AddGroup";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
-import GroupDetails from "./GroupDetails";
+import { Link, useRouteMatch } from "react-router-dom";
 
 function Group({ parentCallback }) {
   let { url } = useRouteMatch();
@@ -26,9 +25,6 @@ function Group({ parentCallback }) {
     getGroups();
   }, []);
 
-  function handleClick(groupId) {
-    parentCallback(groupId);
-  }
   let addGroup = (childData) => {
     setGroups([...groups, childData]);
   };

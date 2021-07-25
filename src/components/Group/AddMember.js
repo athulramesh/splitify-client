@@ -36,14 +36,6 @@ export default function AddMember({
   };
 
   const descriptionElementRef = React.useRef(null);
-  // React.useEffect(() => {
-  //   if (open) {
-  //     const { current: descriptionElement } = descriptionElementRef;
-  //     if (descriptionElement !== null) {
-  //       descriptionElement.focus();
-  //     }
-  //   }
-  // }, [open]);
 
   useEffect(() => {
     getUserFriends();

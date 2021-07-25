@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import auth from "../adapters/authenticationAdapter";
 import Cookies from "universal-cookie";
-import { useHistory } from "react-router-dom";
 const AuthContext = React.createContext();
 
 export function useAuth() {

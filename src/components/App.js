@@ -4,8 +4,6 @@ import { FriendsProvider } from "../contexts/FriendsContext";
 import "../styles/App.css";
 import Login from "./Authentication/Login";
 import SignUp from "./Authentication/SignUp";
-import Friend from "./Friend/Friend";
-import Group from "./Group/Group";
 import Dashboad from "./Home/Dashboad";
 import PrivateRouter from "./PrivateRouter";
 
