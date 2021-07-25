@@ -125,7 +125,10 @@ function GroupDetails() {
         </div>
         <div>
           {transactions?.map((t) => (
-            <IndividualTransactionCard key={id} individualTransaction={t} />
+            <IndividualTransactionCard
+              key={t?.person?.firstName}
+              individualTransaction={t}
+            />
           ))}
         </div>
         <div className="expenseDetails">{sortedList?.map((t) => t)}</div>
@@ -146,7 +149,7 @@ function GroupDetails() {
           />
         </div>
         {group?.groupMemberList?.map((g) => (
-          <GroupMemberDetails value={g} />
+          <GroupMemberDetails key={g?.id} value={g} />
         ))}
       </div>
     </div>

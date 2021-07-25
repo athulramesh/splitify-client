@@ -8,7 +8,7 @@ import Alert from "@material-ui/lab/Alert";
 import UserCard from "./UserCard";
 import { useFriends } from "../../contexts/FriendsContext";
 import { Link, useRouteMatch } from "react-router-dom";
-function Friend({ parentCallbackFriend }) {
+function Friend() {
   let { url } = useRouteMatch();
   const [user, setUser] = useState();
   const { currentUser } = useAuth();
@@ -69,11 +69,12 @@ function Friend({ parentCallbackFriend }) {
           <Link
             to={{ pathname: `${url}/${f.groupId}`, state: { friend: f } }}
             style={{ textDecoration: "none" }}
+            key={f?.groupId}
           >
             <FriendList
-              key={f.id}
-              firstName={f.firstName}
-              lastName={f.lastName}
+              key={f?.groupId}
+              firstName={f?.firstName}
+              lastName={f?.lastName}
             />
           </Link>
         ))}

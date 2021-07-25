@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  Redirect,
   useParams,
 } from "react-router-dom";
 
@@ -21,26 +20,8 @@ import FriendGroupDetails from "../Group/FriendGroupDetails";
 import PrivateRouter from "../PrivateRouter";
 
 function SideBar() {
-  const [groupId, setGroupId] = useState("");
-  const [friend, setfriend] = useState("");
   let { id } = useParams();
-  let handleCallback = (childData) => {
-    setfriend("");
-    setGroupId("");
-    setGroupId(childData);
-  };
-  let handleFriendCallback = (friend) => {
-    setfriend("");
-    setGroupId("");
-    setfriend(friend);
-  };
-  let handleCallBackComponent = (childData) => {
-    if (childData?.component === "group") {
-      handleCallback(childData?.groupId);
-    } else {
-      handleFriendCallback(childData?.friend);
-    }
-  };
+
   const routes = [
     {
       path: "/",
@@ -62,25 +43,16 @@ function SideBar() {
     },
     {
       path: `/group/:id`,
-      sidebar: () => <h2>group/{id}</h2>,
+      sidebar: () => <h2>Group/{id}</h2>,
       main: () => <GroupDetails />,
     },
     {
       path: `/friend/:id`,
-      sidebar: () => <h2>friend/{friend?.groupId}</h2>,
-      main: (props) => <FriendGroupDetails />,
+      sidebar: () => <h2>Friend</h2>,
+      main: () => <FriendGroupDetails />,
     },
   ];
-  const AuthPage = () => {
-    if (groupId !== "") {
-      let id = groupId;
-      return <Redirect from="/group" to={`/group/${id}`} />;
-    }
-    if (friend?.groupId) {
-      let id = friend?.groupId;
-      return <Redirect from="/friend" to={`/friend/${id}`} />;
-    }
-  };
+
   return (
     <div className="side">
       <Router>
@@ -112,7 +84,6 @@ function SideBar() {
           </div>
 
           <div className="canvas">
-            {AuthPage()}
             <Switch>
               {routes.map((route, index) => (
                 <PrivateRouter

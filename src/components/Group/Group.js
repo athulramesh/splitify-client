@@ -7,7 +7,7 @@ import GroupCard from "./GroupCard";
 import AddGroup from "./AddGroup";
 import { Link, useRouteMatch } from "react-router-dom";
 
-function Group({ parentCallback }) {
+function Group() {
   let { url } = useRouteMatch();
   const { currentUser } = useAuth();
   const [groups, setGroups] = useState([]);

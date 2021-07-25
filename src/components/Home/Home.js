@@ -34,8 +34,12 @@ function Home({ handleCallBackHome }) {
           </Typography>
         )}
         {transaction?.groupTransaction?.map((f) => (
-          <Link to={`/group/${f.groupId}`} style={{ textDecoration: "none" }}>
-            <GroupTransactionCard groupTransactions={f} />
+          <Link
+            to={`/group/${f.groupId}`}
+            style={{ textDecoration: "none" }}
+            key={f?.groupId}
+          >
+            <GroupTransactionCard groupTransactions={f} key={f?.groupId} />
           </Link>
         ))}
         {transaction?.nonGroupTransaction?.length > 0 && (
@@ -57,7 +61,7 @@ function Home({ handleCallBackHome }) {
             }}
             style={{ textDecoration: "none" }}
           >
-            <GroupTransactionCard groupTransactions={g} />
+            <GroupTransactionCard groupTransactions={g} key={g?.groupId} />
           </Link>
         ))}
       </div>
