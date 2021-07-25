@@ -5,8 +5,11 @@ import GroupAdapter from "../../adapters/groupAdapter";
 import SearchIcon from "@material-ui/icons/Search";
 import GroupCard from "./GroupCard";
 import AddGroup from "./AddGroup";
+import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import GroupDetails from "./GroupDetails";
 
 function Group({ parentCallback }) {
+  let { url } = useRouteMatch();
   const { currentUser } = useAuth();
   const [groups, setGroups] = useState([]);
   const groupNameRef = useRef();
@@ -47,9 +50,9 @@ function Group({ parentCallback }) {
       </div>
       <div className="groupLs">
         {groups?.map((f) => (
-          <div onClick={() => handleClick(f.groupId)}>
+          <Link to={`${url}/${f.groupId}`} style={{ textDecoration: "none" }}>
             <GroupCard key={f.groupId} groupName={f.groupName} />
-          </div>
+          </Link>
         ))}
       </div>
     </div>

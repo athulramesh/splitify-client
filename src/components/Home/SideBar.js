@@ -5,6 +5,7 @@ import {
   Route,
   Link,
   Redirect,
+  useParams,
 } from "react-router-dom";
 
 import "../../styles/Home/SideBar.css";
@@ -22,6 +23,7 @@ import PrivateRouter from "../PrivateRouter";
 function SideBar() {
   const [groupId, setGroupId] = useState("");
   const [friend, setfriend] = useState("");
+  let { id } = useParams();
   let handleCallback = (childData) => {
     setfriend("");
     setGroupId("");
@@ -59,14 +61,14 @@ function SideBar() {
       main: () => <Friend parentCallbackFriend={handleFriendCallback} />,
     },
     {
-      path: `/group/:${groupId}`,
-      sidebar: () => <h2>group/{groupId}</h2>,
-      main: () => <GroupDetails id={groupId} />,
+      path: `/group/:id`,
+      sidebar: () => <h2>group/{id}</h2>,
+      main: () => <GroupDetails />,
     },
     {
-      path: `/friend/:${friend?.groupId}`,
+      path: `/friend/:id`,
       sidebar: () => <h2>friend/{friend?.groupId}</h2>,
-      main: () => <FriendGroupDetails friend={friend} />,
+      main: (props) => <FriendGroupDetails {...props} />,
     },
   ];
   const AuthPage = () => {

@@ -1,12 +1,15 @@
 import { Typography } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import GroupAdapter from "../../adapters/groupAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import "../../styles/Group/GroupDetails.css";
 import AddExpense from "./AddExpense";
 import AddPayment from "./AddPayment";
 
-function FriendGroupDetails({ friend }) {
+function FriendGroupDetails() {
+  let location = useLocation();
+  let friend = location?.state?.friend;
   const { currentUser } = useAuth();
   const [group, setGroup] = useState();
   function getGroupDetails() {
@@ -21,7 +24,7 @@ function FriendGroupDetails({ friend }) {
   return (
     <div className="group_details">
       <Typography variant="h3" component="h2" className="groupMemberHeading">
-        {`${friend.firstName} ${friend.lastName}`}
+        {`${friend?.firstName} ${friend?.lastName}`}
       </Typography>
       <div className="group_transaction_details">
         <AddExpense

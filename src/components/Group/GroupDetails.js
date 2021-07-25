@@ -13,8 +13,10 @@ import TransactionAdapter from "../../adapters/transactionAdapter";
 import IndividualTransactionCard from "./IndividualTransactionCard";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import mergerSort from "./mergesort";
+import { useParams } from "react-router-dom";
 
-function GroupDetails({ id }) {
+function GroupDetails() {
+  let { id } = useParams();
   const { currentUser } = useAuth();
   const [group, setGroup] = useState();
   const [expenses, setExpenses] = useState([]);

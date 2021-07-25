@@ -147,8 +147,8 @@ function AddExpense({ groupId, groupMemberList, expenseCallback }) {
             >
               {groupMemberList?.map((g) => (
                 <MenuItem
-                  value={g.id}
-                >{`${g.firstName} ${g.lastName} `}</MenuItem>
+                  value={g?.id}
+                >{`${g?.firstName} ${g?.lastName} `}</MenuItem>
               ))}
             </Select>
           </FormControl>

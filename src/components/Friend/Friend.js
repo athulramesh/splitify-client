@@ -7,7 +7,9 @@ import FriendList from "./FriendList";
 import Alert from "@material-ui/lab/Alert";
 import UserCard from "./UserCard";
 import { useFriends } from "../../contexts/FriendsContext";
+import { Link, useRouteMatch } from "react-router-dom";
 function Friend({ parentCallbackFriend }) {
+  let { url } = useRouteMatch();
   const [user, setUser] = useState();
   const { currentUser } = useAuth();
   const userNameRef = useRef();
@@ -67,13 +69,16 @@ function Friend({ parentCallbackFriend }) {
       </div>
       <div className="friendls">
         {friends?.map((f) => (
-          <div onClick={() => handleClickFriend(f)}>
+          <Link
+            to={{ pathname: `${url}/${f.groupId}`, state: { friend: f } }}
+            style={{ textDecoration: "none" }}
+          >
             <FriendList
               key={f.id}
               firstName={f.firstName}
               lastName={f.lastName}
             />
-          </div>
+          </Link>
         ))}
       </div>
     </div>

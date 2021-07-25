@@ -142,8 +142,8 @@ export default function AddPayment({
             >
               {groupMemberList?.map((g) => (
                 <MenuItem
-                  value={g.id}
-                >{`${g.firstName} ${g.lastName} `}</MenuItem>
+                  value={g?.id}
+                >{`${g?.firstName} ${g?.lastName} `}</MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -157,8 +157,8 @@ export default function AddPayment({
             >
               {groupMemberList?.map((g) => (
                 <MenuItem
-                  value={g.id}
-                >{`${g.firstName} ${g.lastName} `}</MenuItem>
+                  value={g?.id}
+                >{`${g?.firstName} ${g?.lastName} `}</MenuItem>
               ))}
             </Select>
           </FormControl>
