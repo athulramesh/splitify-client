@@ -7,7 +7,7 @@ import SideBar from "./SideBar";
 import Notification from "./Notification";
 
 function Dashboad() {
-  const { currentUser } = useAuth();
+  const { currentUser, signOut } = useAuth();
   return (
     <div className="dash">
       <div className="nav">
@@ -19,6 +19,7 @@ function Dashboad() {
               {currentUser?.userDetails?.firstName[0].toUpperCase()}
             </Avatar>
             <h2>{currentUser?.userDetails?.firstName}</h2>
+            <button onClick={() => signOut()}>sign out</button>
           </div>
         </div>
       </div>

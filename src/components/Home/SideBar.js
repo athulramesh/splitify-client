@@ -17,6 +17,7 @@ import GroupIcon from "@material-ui/icons/Group";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import GroupDetails from "../Group/GroupDetails";
 import FriendGroupDetails from "../Group/FriendGroupDetails";
+import PrivateRouter from "../PrivateRouter";
 
 function SideBar() {
   const [groupId, setGroupId] = useState("");
@@ -112,7 +113,7 @@ function SideBar() {
             {AuthPage()}
             <Switch>
               {routes.map((route, index) => (
-                <Route
+                <PrivateRouter
                   key={index}
                   path={route.path}
                   exact={route.exact}

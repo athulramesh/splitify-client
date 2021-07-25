@@ -4,6 +4,8 @@ import { FriendsProvider } from "../contexts/FriendsContext";
 import "../styles/App.css";
 import Login from "./Authentication/Login";
 import SignUp from "./Authentication/SignUp";
+import Friend from "./Friend/Friend";
+import Group from "./Group/Group";
 import Dashboad from "./Home/Dashboad";
 import PrivateRouter from "./PrivateRouter";
 
@@ -14,9 +16,9 @@ function App() {
         <AuthProvider>
           <FriendsProvider>
             <Switch>
-              <PrivateRouter exact path="/" component={Dashboad} />
-              <Route path="/sign-up" component={SignUp} />
               <Route path="/login" component={Login} />
+              <Route path="/sign-up" component={SignUp} />
+              <PrivateRouter path="/" component={Dashboad} />
             </Switch>
           </FriendsProvider>
         </AuthProvider>
