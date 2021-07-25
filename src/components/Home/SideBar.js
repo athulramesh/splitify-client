@@ -43,12 +43,12 @@ function SideBar() {
     },
     {
       path: `/group/:id`,
-      sidebar: () => <h2>Group/{id}</h2>,
+      sidebar: () => <h2>Groups/{id}</h2>,
       main: GroupDetails,
     },
     {
       path: `/friend/:id`,
-      sidebar: () => <h2>Friend</h2>,
+      sidebar: () => <h2>Friends</h2>,
       main: FriendGroupDetails,
     },
   ];
