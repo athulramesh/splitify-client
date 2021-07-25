@@ -5,6 +5,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { Avatar, Fade } from "@material-ui/core";
 import "../../styles/Group/GroupTransactionCard.css";
+import NumberFormat from "react-number-format";
 
 export default function GroupTransactionCard({ groupTransactions }) {
   const name = groupTransactions?.groupName
@@ -26,10 +27,33 @@ export default function GroupTransactionCard({ groupTransactions }) {
         <CardActions>
           <div className="transactiondetails">
             <Typography className="Amount" variant="body2">
-              {fromAmount > 0 ? fromAmount : null}
+              {fromAmount > 0 ? (
+                <NumberFormat
+                  value={fromAmount}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"₹"}
+                  decimalScale={2}
+                  fixedDecimalScale={true}
+                />
+              ) : null}
             </Typography>
-            <Typography className="Amount" variant="body2" color="secondary">
-              {toAmount > 0 ? toAmount : null}
+            <Typography
+              className="Amount"
+              variant="body2"
+              color="secondary"
+              style={{ marginLeft: "10px" }}
+            >
+              {toAmount > 0 ? (
+                <NumberFormat
+                  value={toAmount}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"₹"}
+                  decimalScale={2}
+                  fixedDecimalScale={true}
+                />
+              ) : null}
             </Typography>
           </div>
         </CardActions>

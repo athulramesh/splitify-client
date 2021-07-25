@@ -1,5 +1,6 @@
 import { Card, CardContent, Typography } from "@material-ui/core";
 import React from "react";
+import NumberFormat from "react-number-format";
 import "../../styles/Home/Summary.css";
 
 function Summary({ from, to }) {
@@ -20,7 +21,18 @@ function Summary({ from, to }) {
                 component="h4"
                 style={{ color: "#06d6a0" }}
               >
-                {from ? `${from}` : 0}
+                {from ? (
+                  <NumberFormat
+                    value={from}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"₹"}
+                    decimalScale={2}
+                    fixedDecimalScale={true}
+                  />
+                ) : (
+                  0
+                )}
               </Typography>
             </div>
             <div className="owe">
@@ -32,7 +44,18 @@ function Summary({ from, to }) {
                 component="h4"
                 style={{ color: "#ff686b" }}
               >
-                {to ? `${to}` : 0}
+                {to ? (
+                  <NumberFormat
+                    value={to}
+                    displayType={"text"}
+                    thousandSeparator={true}
+                    prefix={"₹"}
+                    decimalScale={2}
+                    fixedDecimalScale={true}
+                  />
+                ) : (
+                  0
+                )}
               </Typography>
             </div>
           </div>
