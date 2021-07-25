@@ -111,7 +111,10 @@ function FriendGroupDetails() {
         </div>
         <div>
           {transactions?.map((t) => (
-            <IndividualTransactionCard key={id} individualTransaction={t} />
+            <IndividualTransactionCard
+              key={t?.person?.firstName}
+              individualTransaction={t}
+            />
           ))}
         </div>
         <div className="expenseDetails">{sortedList?.map((t) => t)}</div>

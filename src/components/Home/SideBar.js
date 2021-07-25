@@ -27,29 +27,29 @@ function SideBar() {
       path: "/",
       exact: true,
       sidebar: () => <h2>Home</h2>,
-      main: () => <Home />,
+      main: Home,
     },
     {
       path: "/group",
       exact: true,
       sidebar: () => <h2>Groups</h2>,
-      main: () => <Group />,
+      main: Group,
     },
     {
       path: "/friend",
       exact: true,
       sidebar: () => <h2>Friends</h2>,
-      main: () => <Friend />,
+      main: Friend,
     },
     {
       path: `/group/:id`,
       sidebar: () => <h2>Group/{id}</h2>,
-      main: () => <GroupDetails />,
+      main: GroupDetails,
     },
     {
       path: `/friend/:id`,
       sidebar: () => <h2>Friend</h2>,
-      main: () => <FriendGroupDetails />,
+      main: FriendGroupDetails,
     },
   ];
 
@@ -90,7 +90,7 @@ function SideBar() {
                   key={index}
                   path={route.path}
                   exact={route.exact}
-                  children={<route.main />}
+                  component={route.main}
                 />
               ))}
             </Switch>
