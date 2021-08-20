@@ -8,9 +8,11 @@ function Summary({ from, to }) {
     <div className="summary">
       <Card style={{ backgroundColor: "#15616d", color: "#FFFFFF" }}>
         <CardContent className="summary-content">
-          <Typography variant="h6" component="h6" className="heading">
-            {`Your Dashboard`}
-          </Typography>
+          <div className="heading">
+            <Typography variant="h6" component="h6">
+              {`Your Dashboard`}
+            </Typography>
+          </div>
           <div className="transactions">
             <div className="owe">
               <Typography variant="h6" component="h6">

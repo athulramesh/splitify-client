@@ -8,7 +8,7 @@ function Dashboad() {
   return (
     <div className="dash">
       <div className="nav">
-        <h1 className="logo">Splitify</h1>
+        <h2 className="logo">SimplifySplit</h2>
         <div className="nav_right">
           <Notification />
           <Profile />

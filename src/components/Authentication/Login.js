@@ -21,7 +21,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="">
-        Splitify
+        SimplifySplit
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -81,7 +81,7 @@ export default function Login() {
       <CssBaseline />
       <div className={classes.paper}>
         <Typography component="h1" variant="h3">
-          Splitify
+          Simplify Split
         </Typography>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
