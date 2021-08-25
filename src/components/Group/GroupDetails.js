@@ -1,5 +1,5 @@
-import { Typography } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import { FormControlLabel, Typography } from "@material-ui/core";
+import React, { useEffect, useRef, useState } from "react";
 import GroupAdapter from "../../adapters/groupAdapter";
 import ExpenseAdapter from "../../adapters/expenseAdapter";
 import PaymentAdapter from "../../adapters/paymentAdapter";
@@ -14,6 +14,17 @@ import IndividualTransactionCard from "./IndividualTransactionCard";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import mergerSort from "./mergesort";
 import { useParams } from "react-router-dom";
+import { MenuItem } from "@material-ui/core";
+import { Menu } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { Button } from "@material-ui/core";
+import { DialogActions } from "@material-ui/core";
+import { DialogContentText } from "@material-ui/core";
+import { DialogTitle } from "@material-ui/core";
+import { DialogContent } from "@material-ui/core";
+import { TextField, Dialog } from "@material-ui/core";
+import Switch from "@material-ui/core/Switch";
 
 function GroupDetails() {
   let { id } = useParams();
@@ -23,6 +34,57 @@ function GroupDetails() {
   const [payments, setpayments] = useState([]);
   const [transactions, setTransactions] = useState();
   const [sortedList, setSortedList] = useState();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [clicked, setClicked] = useState(false);
+  const [editGroup, setEditGroup] = useState(false);
+  const groupNameRef = useRef();
+  const [simplify, setSimplify] = useState(true);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    setClicked(true);
+  };
+
+  const memberDelete = (deletedMember) => {
+    let idx;
+    let memberList = group?.groupMemberList;
+    for (let i in memberList) {
+      if (memberList[i].id === deletedMember) {
+        idx = i;
+
+        break;
+      }
+    }
+    memberList.splice(idx, idx);
+    setGroup({ ...group, groupMemberList: memberList });
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleRemove = () => {
+    GroupAdapter.deleteGroup(currentUser, id).then((data) => {});
+    handleClose();
+  };
+  const handleEdit = () => {
+    setEditGroup(true);
+    handleClose();
+  };
+  const handleClickOk = () => {
+    GroupAdapter.updateGroup(currentUser, id, {
+      groupName: groupNameRef?.current?.value,
+      simplify: simplify,
+    }).then(() =>
+      setGroup({ ...group, groupName: groupNameRef?.current?.value })
+    );
+    handleEditClose();
+    setEditGroup(false);
+  };
+  const handleEditClose = () => {
+    setEditGroup(false);
+  };
+  const open = Boolean(anchorEl);
+
   function getGroupDetails() {
     GroupAdapter.getGroupDetails(currentUser, id).then((data) => {
       setGroup(data.data);
@@ -85,12 +147,81 @@ function GroupDetails() {
       groupMemberList: [...group.groupMemberList, childData],
     });
   };
+  const handleChange = () => {
+    setSimplify((prev) => !prev);
+  };
   return (
     <div className="group_details">
       <div className="group_transaction_details">
-        <Typography variant="h3" component="h2" className="groupMemberHeading">
-          {group?.groupName}
-        </Typography>
+        <div className="group_details_header">
+          <Typography
+            variant="h3"
+            component="h2"
+            className="groupMemberHeading"
+          >
+            {group?.groupName}
+          </Typography>
+          <IconButton
+            aria-label="more"
+            aria-controls="long-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            <MoreVertIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            keepMounted
+            open={open}
+            onClose={handleClose}
+            PaperProps={{
+              style: {
+                maxHeight: 20 * 4.5,
+                width: "20ch",
+              },
+            }}
+          >
+            <MenuItem onClick={handleEdit}>Edit</MenuItem>
+            <MenuItem onClick={handleRemove}>Delete</MenuItem>
+          </Menu>
+        </div>
+        <div>
+          <Dialog open={editGroup} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">Edit Group</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Allows you to change the group name
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Group Name"
+                type="text"
+                fullWidth
+                inputRef={groupNameRef}
+              />
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={simplify}
+                    onChange={handleChange}
+                    color="primary"
+                  />
+                }
+                label="Simplify"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleEditClose} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={handleClickOk} color="primary">
+                Ok
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
         <div className="actions">
           <AddExpense
             groupId={id}
@@ -149,7 +280,12 @@ function GroupDetails() {
           />
         </div>
         {group?.groupMemberList?.map((g) => (
-          <GroupMemberDetails key={g?.id} value={g} />
+          <GroupMemberDetails
+            key={g?.id}
+            value={g}
+            groupId={id}
+            callBackDelete={memberDelete}
+          />
         ))}
       </div>
     </div>

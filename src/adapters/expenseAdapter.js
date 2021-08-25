@@ -20,4 +20,20 @@ export default class ExpenseAdapter {
       }
     );
   }
+
+  static updateExpense(currentUser, expenseId, requestBody) {
+    return axios.put(`${this.basePath}expenses/${expenseId}/`, requestBody, {
+      headers: {
+        Authorization: `Bearer ${currentUser?.jwt}`,
+      },
+    });
+  }
+
+  static deleteExpense(currentUser, expenseId) {
+    return axios.put(`${this.basePath}expenses/${expenseId}/delete`, {
+      headers: {
+        Authorization: `Bearer ${currentUser?.jwt}`,
+      },
+    });
+  }
 }

@@ -4,7 +4,9 @@
 }
 .list_expense_shares {
   align-items: center;
-  /* margin-left: 20px; */
   justify-content: space-around;
-  /* margin-bottom: 15px; */
+}
+.accordion_header {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -22,11 +21,6 @@ function FriendList({ firstName, lastName }) {
             </Typography>
           </div>
         </CardContent>
-        <CardActions>
-          <Button size="small" color="secondary">
-            Remove
-          </Button>
-        </CardActions>
       </Card>
     </Grow>
   );
