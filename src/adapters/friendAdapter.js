@@ -57,4 +57,28 @@ export default class Friend {
       }
     );
   }
+
+  static rejectRequest(currentUser, requestBody) {
+    return axios.put(
+      `${this.basePath}connections/${currentUser?.userDetails.id}/reject`,
+      requestBody,
+      {
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
+
+  static cancelRequest(currentUser, requestBody) {
+    return axios.put(
+      `${this.basePath}connections/${currentUser?.userDetails.id}/cancel`,
+      requestBody,
+      {
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
 }

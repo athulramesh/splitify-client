@@ -61,3 +61,8 @@
   margin-right: auto;
   width: 70%;
 }
+
+.group_details_header {
+  display: flex;
+  justify-content: space-between;
+}

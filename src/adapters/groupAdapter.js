@@ -44,4 +44,32 @@ export default class GroupAdapter {
       },
     });
   }
+
+  static removeGroupMember(currentUser, groupId, requestBody) {
+    return axios.put(
+      `${this.basePath}groups/${groupId}/remove-member`,
+      requestBody,
+      {
+        headers: {
+          Authorization: `Bearer ${currentUser?.jwt}`,
+        },
+      }
+    );
+  }
+
+  static deleteGroup(currentUser, groupId) {
+    return axios.put(`${this.basePath}groups/${groupId}/delete`, {
+      headers: {
+        Authorization: `Bearer ${currentUser?.jwt}`,
+      },
+    });
+  }
+
+  static updateGroup(currentUser, groupId, requestBody) {
+    return axios.put(`${this.basePath}groups/${groupId}`, requestBody, {
+      headers: {
+        Authorization: `Bearer ${currentUser?.jwt}`,
+      },
+    });
+  }
 }

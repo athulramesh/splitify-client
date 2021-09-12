@@ -34,6 +34,15 @@ export default function FriendRequets({ requests }) {
       setFriend(value);
     });
   };
+
+  const rejectRequest = (value) => {
+    FriendAdapter.rejectRequest(currentUser, {
+      connectionId: value.connectionId,
+    }).then((res) => {
+      value.groupId = res.data;
+    });
+  };
+
   return (
     <List dense className={classes.root}>
       {requests.map((value) => {
@@ -55,6 +64,13 @@ export default function FriendRequets({ requests }) {
                   onClick={() => acceptRequest(value)}
                 >
                   Accept
+                </Button>
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() => rejectRequest(value)}
+                >
+                  Reject
                 </Button>
               </ListItemSecondaryAction>
             </ListItem>

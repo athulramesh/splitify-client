@@ -21,6 +21,21 @@ export default class PaymentAdapter {
       }
     );
   }
+  static updatePayment(currentUser, paymentId, requestBody) {
+    return axios.put(`${this.basePath}payments/${paymentId}/`, requestBody, {
+      headers: {
+        Authorization: `Bearer ${currentUser?.jwt}`,
+      },
+    });
+  }
+
+  static deletePayment(currentUser, paymentId, requestBody) {
+    return axios.put(`${this.basePath}payments/${paymentId}/delete`, {
+      headers: {
+        Authorization: `Bearer ${currentUser?.jwt}`,
+      },
+    });
+  }
 
   static addGroup(currentUser, requestBody) {
     return axios.post(
