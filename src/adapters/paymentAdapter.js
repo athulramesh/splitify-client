@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class PaymentAdapter {
-  static basePath = "http://localhost:8080/v1/api/";
+  static basePath = "https://simplifysplit.herokuapp.com/v1/api/";
   static recordPayment(currentUser, requestBody) {
     return axios.post(`${this.basePath}payments/`, requestBody, {
       headers: {

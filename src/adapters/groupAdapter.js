@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default class GroupAdapter {
-  static basePath = "http://localhost:8080/v1/api/";
+  static basePath = "https://simplifysplit.herokuapp.com/v1/api/";
   static getAllGroups(currentUser) {
     return axios.get(
       `${this.basePath}groups/${currentUser?.userDetails.id}/all-groups`,
