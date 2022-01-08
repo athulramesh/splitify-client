@@ -71,8 +71,10 @@ export default function SignUp() {
         password: passwordRef.current.value,
       });
       history.push("/");
-    } catch (err) {
-      setError("Failed to login");
+    } catch (error) {
+      if (error.response.status === 400) {
+        setError(error.response.data.message);
+      }
     }
     setLoading(false);
   }
@@ -160,6 +162,10 @@ export default function SignUp() {
             color="primary"
             className={classes.submit}
             disabled={loading}
+            style={{
+              backgroundColor: "#0db39e",
+              color: "#FFFFFF",
+            }}
           >
             Sign Up
           </Button>

@@ -19,14 +19,14 @@ export default function GroupTransactionCard({ groupTransactions }) {
         <CardContent className="groupList">
           <Avatar className="groupAvatar">{name[0].toUpperCase()}</Avatar>
           <div className="groupName">
-            <Typography variant="caption" component="h6">
+            <Typography variant="h6" component="h5">
               {name}
             </Typography>
           </div>
         </CardContent>
         <CardActions>
           <div className="transactiondetails">
-            <Typography className="Amount" variant="body2">
+            <Typography className="Amount" variant="body1">
               {fromAmount > 0 ? (
                 <NumberFormat
                   value={fromAmount}
@@ -40,7 +40,7 @@ export default function GroupTransactionCard({ groupTransactions }) {
             </Typography>
             <Typography
               className="Amount"
-              variant="body2"
+              variant="body1"
               color="secondary"
               style={{ marginLeft: "10px" }}
             >

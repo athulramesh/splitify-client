@@ -2,14 +2,14 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  margin-bottom: 6px;
-  margin-top: 10px;
+  /* margin-bottom: 6px; */
 }
 .logo {
   /* left: 20px;
   width: 80px; */
   margin-left: 10px;
   margin-top: 5px;
+  margin-bottom: 5px;
   background: -webkit-linear-gradient(#06d6a0, #1e6091);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -24,4 +24,14 @@
 }
 .nav_right {
   display: flex;
+}
+.nav__left {
+  display: flex;
+  align-items: center;
+}
+.nav__logo {
+  margin-left: 10px;
+  left: 27px;
+  width: 27px;
+  object-fit: contain;
 }

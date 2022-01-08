@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,6 +11,8 @@ import FriendAdapter from "../../adapters/friendAdapter";
 import { useAuth } from "../../contexts/AuthContext";
 import { useFriends } from "../../contexts/FriendsContext";
 import "../../styles/Home/FriendRequest.css";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import DeleteForever from "@material-ui/icons/DeleteForever";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,12 +28,16 @@ export default function FriendRequets({ requests }) {
   const { currentUser } = useAuth();
   const { setFriend } = useFriends();
 
+  const [added, setAdded] = useState(false);
+  const [del, setDel] = useState(false);
+
   const acceptRequest = (value) => {
     FriendAdapter.acceptRequest(currentUser, {
       connectionId: value.connectionId,
     }).then((res) => {
       value.groupId = res.data;
       setFriend(value);
+      setAdded(true);
     });
   };
 
@@ -40,6 +46,7 @@ export default function FriendRequets({ requests }) {
       connectionId: value.connectionId,
     }).then((res) => {
       value.groupId = res.data;
+      setDel(true);
     });
   };
 
@@ -57,22 +64,30 @@ export default function FriendRequets({ requests }) {
                 id={labelId}
                 primary={`${value.firstName} ${value.lastName}`}
               />
-              <ListItemSecondaryAction>
-                <Button
-                  size="small"
-                  color="primary"
-                  onClick={() => acceptRequest(value)}
-                >
-                  Accept
-                </Button>
-                <Button
-                  size="small"
-                  color="primary"
-                  onClick={() => rejectRequest(value)}
-                >
-                  Reject
-                </Button>
-              </ListItemSecondaryAction>
+              {added ? (
+                <CheckCircleOutlineIcon className="icon" />
+              ) : del ? (
+                <DeleteForever className="icon" />
+              ) : (
+                <div className={classes.buttons}>
+                  <ListItemSecondaryAction>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => acceptRequest(value)}
+                    >
+                      Accept
+                    </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={() => rejectRequest(value)}
+                    >
+                      Reject
+                    </Button>
+                  </ListItemSecondaryAction>
+                </div>
+              )}
             </ListItem>
             <Divider light />
           </div>

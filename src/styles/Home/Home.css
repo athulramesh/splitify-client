@@ -2,6 +2,7 @@
   flex: 0.8;
   background-color: #dee2e6;
   height: 100vh;
+  overflow-y: overlay;
 }
 .placeholder {
   height: 20px;

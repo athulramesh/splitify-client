@@ -14,6 +14,7 @@ export function AuthProvider({ children }) {
   async function login(authRequest) {
     let data = await auth.signIn(authRequest).then((data) => {
       setCurrentUser(data.data);
+      console.log(data);
       cookies.set("currentUser", data.data, { path: "/" });
     });
     return data;

@@ -67,8 +67,8 @@ export default function Login() {
         password: passwordRef.current.value,
       });
       history.push("/");
-    } catch (err) {
-      setError("Failed to login");
+    } catch (error) {
+      setError(error.response.data.message);
     }
 
     setLoading(false);
@@ -97,7 +97,7 @@ export default function Login() {
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="User Name"
             name="email"
             autoComplete="email"
             autoFocus
@@ -118,10 +118,6 @@ export default function Login() {
             inputRef={passwordRef}
             onClick={() => init()}
           />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
           <Button
             type="submit"
             fullWidth
@@ -129,6 +125,10 @@ export default function Login() {
             color="primary"
             disabled={loading}
             className={classes.submit}
+            style={{
+              backgroundColor: "#0db39e",
+              color: "#FFFFFF",
+            }}
           >
             Sign In
           </Button>

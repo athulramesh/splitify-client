@@ -7,3 +7,16 @@
   display: flex;
   align-items: center;
 }
+.pagedGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.page {
+  padding-bottom: 5px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
