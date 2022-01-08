@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
   sign_out: {
     marginRight: "10px",
   },
+  icons: {
+    marginRight: "10px",
+  },
 }));
 
 export default function Profile() {
@@ -39,8 +42,12 @@ export default function Profile() {
   useEffect(() => {}, []);
   return (
     <div>
-      <IconButton style={{ marginTop: "-10px", marginBottom: "-10px" }}>
-        <Avatar button onClick={handleClick}>
+      <IconButton
+        style={{ height: "50px", width: "50px" }}
+        className={classes.icons}
+        onClick={handleClick}
+      >
+        <Avatar style={{ height: "30px", width: "30px" }}>
           {currentUser?.userDetails?.firstName[0].toUpperCase()}
         </Avatar>
       </IconButton>

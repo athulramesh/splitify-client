@@ -10,7 +10,16 @@ import FriendRequets from "./FriendRequests";
 
 const useStyles = makeStyles((theme) => ({
   typography: {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    // width: "40%",
+  },
+  pop: {
     padding: theme.spacing(2),
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
 }));
 
@@ -65,10 +74,16 @@ export default function Notification() {
           horizontal: "center",
         }}
       >
-        <Typography className={classes.typography}>
-          Your friend requests.
-        </Typography>
-        <FriendRequets requests={friendRequests} />
+        <div className={classes.pop}>
+          <div className={classes.typography}>
+            {friendRequests?.length === 0 ? (
+              <Typography>No notifications</Typography>
+            ) : (
+              <Typography>Your friend requests</Typography>
+            )}
+          </div>
+          <FriendRequets requests={friendRequests} />
+        </div>
       </Popover>
     </div>
   );

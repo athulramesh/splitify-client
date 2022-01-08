@@ -15,8 +15,10 @@ function Friend() {
   const userNameRef = useRef();
   const [error, setError] = useState();
   const { friends, getUserFriends } = useFriends();
+  const [friendsToShow, setFriendsToShow] = useState();
   function getFriends() {
     getUserFriends();
+    setFriendsToShow(friends);
   }
   async function handle(e) {
     e.preventDefault();
@@ -32,10 +34,25 @@ function Friend() {
       setError("Oops!! The requested user not found");
     }
   }
-  function init() {
+
+  const filter = (e) => {
     setError("");
     setUser("");
-  }
+    const keyword = e.target.value;
+
+    if (keyword !== "") {
+      const results = friends.filter((f) => {
+        return (
+          f.firstName.toLowerCase().startsWith(keyword.toLowerCase()) ||
+          f.lastName.toLowerCase().startsWith(keyword.toLowerCase()) ||
+          f.userName.toLowerCase().startsWith(keyword.toLowerCase())
+        );
+      });
+      setFriendsToShow(results);
+    } else {
+      setFriendsToShow(friends);
+    }
+  };
   useEffect(() => {
     getFriends();
   }, []);
@@ -45,7 +62,7 @@ function Friend() {
       <h1 className="header">Friends</h1>
       <div className="header__left">
         <SearchIcon />
-        <form onSubmit={handle} onChange={init}>
+        <form onSubmit={handle} onChange={filter}>
           <input
             placeholder="Search for Friends"
             type="text"
@@ -65,7 +82,7 @@ function Friend() {
         )}
       </div>
       <div className="friendls">
-        {friends?.map((f) => (
+        {friendsToShow?.map((f) => (
           <Link
             to={{ pathname: `${url}/${f.groupId}`, state: { friend: f } }}
             style={{ textDecoration: "none" }}
