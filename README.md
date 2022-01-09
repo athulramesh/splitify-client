@@ -1,4 +1,4 @@
-# Splitify Client
+# SimplifySplit Client
 
-React application for splitify 
+React application for SimplifySplit 
 
